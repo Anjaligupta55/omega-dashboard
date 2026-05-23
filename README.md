@@ -73,6 +73,3 @@ Follow these steps to run the application locally:
    npm run build
    ```
 
-## 👤 Author
-
-Developed by **Anjali Gupta** (Frontend Intern).

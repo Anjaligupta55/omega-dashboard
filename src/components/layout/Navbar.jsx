@@ -13,7 +13,7 @@ export const Navbar = ({ onMenuClick }) => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const notificationRef = useRef(null);
   const profileRef = useRef(null);
-  
+
   const path = location.pathname;
   let title = 'Dashboard';
   if (path.includes('/products')) title = 'Products';
@@ -75,19 +75,18 @@ export const Navbar = ({ onMenuClick }) => {
       <div className="navbar-right">
         <div className="search-bar cursor-pointer" onClick={() => window.dispatchEvent(new CustomEvent('open-command-palette'))}>
           <Search size={18} className="search-icon" />
-          <input 
-            type="text" 
-            placeholder="Search (Ctrl + K)" 
-            className="search-input cursor-pointer" 
-            readOnly 
+          <input
+            type="text"
+            placeholder="Search (Ctrl + K)"
+            className="search-input cursor-pointer"
+            readOnly
           />
-          <span className="search-shortcut">⌘K</span>
         </div>
-        
+
         <div className="navbar-actions">
           <div className="relative" ref={notificationRef}>
-            <button 
-              className="icon-btn relative" 
+            <button
+              className="icon-btn relative"
               onClick={() => setShowNotifications(!showNotifications)}
               style={{ cursor: 'pointer' }}
             >
@@ -113,13 +112,13 @@ export const Navbar = ({ onMenuClick }) => {
               </div>
             </div>
           </div>
-          
+
           <ThemeToggle />
-          
+
           <div className="relative" ref={profileRef}>
-            <img 
-              src={avatar} 
-              alt="Profile" 
+            <img
+              src={avatar}
+              alt="Profile"
               className="nav-avatar"
               onClick={() => setShowProfileDropdown(!showProfileDropdown)}
               style={{ border: '2px solid var(--border-color)', padding: '2px' }}

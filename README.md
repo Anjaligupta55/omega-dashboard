@@ -1,16 +1,78 @@
-# React + Vite
+# Omega Dashboard 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium SaaS-style product management dashboard built with React and Vite. This application is designed to simulate a professional startup admin panel, featuring dynamic themes, robust filtering, URL state synchronization, and a variety of performance optimizations. 
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Premium Modern UI**: A clean, minimalistic SaaS design inspired by modern tools like Linear and Vercel. 
+- **Bright/Dull Mode**: Fully functional theme toggle with smooth animations that persists user preferences using `localStorage`.
+- **Responsive Layout**: Adapts seamlessly to desktop, tablet, and mobile with a collapsible sidebar and adaptive components (e.g., product tables convert to cards on mobile).
+- **Advanced Filtering & Sorting**: Sort products, filter by categories, rating, and stock status.
+- **URL State Synchronization**: Search terms, active filters, and pagination are synced securely to the URL using `useSearchParams`. Refreshing the page keeps your exact filter state intact!
+- **Column Customization**: Toggle table columns on or off. Settings are persisted locally.
+- **Real-Time Simulation**: Mock live product inventory updates powered by a global Toast notification context.
+- **Data Visualization**: Integrated `recharts` to render visual analytics like Category Distribution, Traffic, and Rating distributions.
 
-## React Compiler
+## ⚡ Performance Optimizations
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This dashboard implements several React optimizations to ensure maximum framerate and responsiveness:
 
-## Expanding the ESLint configuration
+1. **`useMemo`**: Used heavily for memoizing sorted and filtered product derivations. This ensures expensive recalculations are only fired when dependencies strictly change.
+2. **`useCallback`**: Memoizes function handlers (like `onFilterChange`) to prevent unnecessary child component re-renders.
+3. **`React.memo`**: Protects pure UI components (like `ProductCard`, `ProductTable`, `Button`, and `Badge`) from useless re-renders when parent states change.
+4. **`useDebounce`**: A custom hook delays the user's search queries by `300ms`, minimizing UI blocking and excessive re-renders during fast typing.
+5. **Route Lazy Loading**: Employs `React.lazy` and `Suspense` for chunking route bundles, yielding an extremely lightweight initial load.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Technology Stack
+
+- **Core**: React 19, Vite
+- **Styling**: Vanilla CSS (Custom tokens, Flexbox/Grid)
+- **Routing**: React Router v7
+- **Icons**: Lucide React
+- **Charts**: Recharts
+- **API**: DummyJSON API
+
+## 📂 Project Structure
+
+```
+src/
+├── components/
+│   ├── layout/        # Sidebar, Navbar, DashboardLayout
+│   ├── products/      # Tables, Filters, Pagination, Cards
+│   └── ui/            # Reusable core elements (Button, Badge, Skeleton, Toast)
+├── hooks/             # Custom hooks (useDebounce, useLocalStorage, useTheme)
+├── pages/             # Route level components (Dashboard, Products, Analytics, etc.)
+├── services/          # API fetch services
+├── utils/             # Formatters, sorting and filtering logic
+├── App.jsx            # Routing and Global Contexts
+└── main.jsx           # Entry Point
+```
+
+## 🚀 Setup & Installation
+
+Follow these steps to run the application locally:
+
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd omega-dashboard
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
+
+## 👤 Author
+
+Developed by **Anjali Gupta** (Frontend Intern).

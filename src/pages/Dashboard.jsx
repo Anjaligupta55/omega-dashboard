@@ -6,6 +6,13 @@ import { formatCurrency, formatNumber } from '../utils/formatters';
 
 const COLORS = ['#4F46E5', '#06B6D4', '#22C55E', '#F59E0B', '#EF4444', '#8B5CF6'];
 
+const getGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour < 12) return 'Good Morning';
+  if (hour < 18) return 'Good Afternoon';
+  return 'Good Evening';
+};
+
 export const Dashboard = () => {
   const [stats, setStats] = useState({
     totalProducts: 0,
@@ -67,6 +74,14 @@ export const Dashboard = () => {
 
   return (
     <div className="flex-col gap-6">
+      {/* Welcome Message */}
+      <div className="animate-welcome" style={{ marginBottom: '8px' }}>
+        <h1 className="text-3xl font-bold" style={{ color: 'var(--text-primary)', marginBottom: '4px' }}>
+          {getGreeting()}, Anjali 👋
+        </h1>
+        <p style={{ color: 'var(--text-secondary)' }}>Here is what's happening with your store today.</p>
+      </div>
+
       {/* Hero Section */}
       <div className="card bg-accent flex-col justify-center" style={{ height: '180px', padding: '32px', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: '-50px', right: '-50px', width: '200px', height: '200px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)' }}></div>

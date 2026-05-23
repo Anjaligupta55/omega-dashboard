@@ -3,6 +3,7 @@ import { useLocalStorage } from './useLocalStorage';
 
 export function useTheme() {
   const [theme, setTheme] = useLocalStorage('dashboard-theme', 'bright');
+  const [color, setColor] = useLocalStorage('dashboard-color', 'blue');
 
   useEffect(() => {
     if (theme === 'dull') {
@@ -12,9 +13,17 @@ export function useTheme() {
     }
   }, [theme]);
 
+  useEffect(() => {
+    document.documentElement.setAttribute('data-color', color);
+  }, [color]);
+
   const toggleTheme = () => {
     setTheme(prev => prev === 'bright' ? 'dull' : 'bright');
   };
 
-  return { theme, toggleTheme };
+  const changeColor = (newColor) => {
+    setColor(newColor);
+  };
+
+  return { theme, toggleTheme, color, changeColor };
 }

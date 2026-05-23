@@ -88,7 +88,7 @@ export const Dashboard = () => {
         <div style={{ position: 'absolute', bottom: '-20px', right: '100px', width: '100px', height: '100px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)' }}></div>
         
         <div className="flex items-center gap-2 mb-2">
-          <span className="badge badge-success bg-white text-success" style={{ backgroundColor: 'white', color: 'var(--success)' }}>Live Product API</span>
+          
         </div>
         <h2 style={{ fontSize: '28px', fontWeight: 700, marginBottom: '8px' }}>Product Management Dashboard</h2>
         <p style={{ opacity: 0.9 }}>Track products, inventory, ratings, and category insights in one place.</p>

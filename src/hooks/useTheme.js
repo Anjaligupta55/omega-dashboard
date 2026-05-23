@@ -1,9 +1,20 @@
 import { useEffect } from 'react';
 import { useLocalStorage } from './useLocalStorage';
+import themeConfig from '../theme-config.json';
 
 export function useTheme() {
-  const [theme, setTheme] = useLocalStorage('dashboard-theme', 'bright');
-  const [color, setColor] = useLocalStorage('dashboard-color', 'blue');
+  const [theme, setTheme] = useLocalStorage('dashboard-theme', themeConfig.theme || 'bright');
+  const [color, setColor] = useLocalStorage('dashboard-color', themeConfig.color || 'blue');
+
+  // Watch theme-config.json changes (Vite HMR updates)
+  useEffect(() => {
+    if (themeConfig.theme) {
+      setTheme(themeConfig.theme);
+    }
+    if (themeConfig.color) {
+      setColor(themeConfig.color);
+    }
+  }, [setTheme, setColor]);
 
   useEffect(() => {
     if (theme === 'dull') {

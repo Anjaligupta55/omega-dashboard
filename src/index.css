@@ -4,6 +4,7 @@
   /* Light Mode */
   --bg-color: #F8FAFC;
   --card-bg: #FFFFFF;
+  --card-bg-glass: rgba(255, 255, 255, 0.7);
   --sidebar-bg: #FFFFFF;
   --text-primary: #0F172A;
   --text-secondary: #64748B;
@@ -16,24 +17,27 @@
   --sidebar-active-bg: #EEF2FF;
   --sidebar-hover-bg: #F1F5F9;
   --navbar-blur: rgba(255, 255, 255, 0.8);
+  --card-hover-border: rgba(79, 70, 229, 0.2);
 }
 
 [data-theme='dull'] {
-  /* Dull/Dark Mode */
-  --bg-color: #0F172A;
-  --card-bg: #111827;
-  --sidebar-bg: #020617;
+  /* Dull/Dark Mode - Premium Slate Colors */
+  --bg-color: #020617;
+  --card-bg: #0F172A;
+  --card-bg-glass: rgba(15, 23, 42, 0.65);
+  --sidebar-bg: #0F172A;
   --text-primary: #F8FAFC;
   --text-secondary: #94A3B8;
   --border-color: #1E293B;
   --accent-primary: #818CF8;
   --accent-secondary: #22D3EE;
-  --success: #22C55E;
+  --success: #10B981;
   --warning: #F59E0B;
   --danger: #EF4444;
-  --sidebar-active-bg: rgba(79, 70, 229, 0.15);
-  --sidebar-hover-bg: rgba(30, 41, 59, 0.8);
-  --navbar-blur: rgba(2, 6, 23, 0.8);
+  --sidebar-active-bg: rgba(129, 140, 248, 0.15);
+  --sidebar-hover-bg: rgba(30, 41, 59, 0.6);
+  --navbar-blur: rgba(2, 6, 23, 0.75);
+  --card-hover-border: rgba(129, 140, 248, 0.3);
 }
 
 * {
@@ -200,9 +204,159 @@ input, select {
   --accent-primary: #10B981;
   --accent-secondary: #34D399;
   --sidebar-active-bg: #ECFDF5;
+  --card-hover-border: rgba(16, 185, 129, 0.2);
 }
 [data-theme='dull'][data-color='emerald'] {
   --accent-primary: #34D399;
   --accent-secondary: #6EE7B7;
   --sidebar-active-bg: rgba(16, 185, 129, 0.15);
+  --card-hover-border: rgba(52, 211, 153, 0.3);
+}
+
+[data-color='purple'] {
+  --card-hover-border: rgba(147, 51, 234, 0.2);
+}
+[data-theme='dull'][data-color='purple'] {
+  --card-hover-border: rgba(168, 85, 247, 0.3);
+}
+
+/* Premium Glassmorphism & Card Lift */
+.card-premium {
+  background: var(--card-bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  overflow: hidden;
+}
+
+.card-premium:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.08), 0 0 20px rgba(129, 140, 248, 0.05);
+  border-color: var(--card-hover-border);
+}
+
+/* Glow effects */
+.glow-primary:hover {
+  box-shadow: 0 0 25px rgba(79, 70, 229, 0.25);
+}
+
+.glow-purple:hover {
+  box-shadow: 0 0 25px rgba(147, 51, 234, 0.25);
+}
+
+.glow-emerald:hover {
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);
+}
+
+/* Scrollbar styling */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 99px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Premium Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.pulse-badge {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+/* Shimmer Skeleton */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--border-color) 25%,
+    var(--bg-color) 50%,
+    var(--border-color) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media print {
+  .sidebar, 
+  .navbar, 
+  .navbar-actions, 
+  .search-bar, 
+  .menu-btn,
+  .btn,
+  .dropdown-menu,
+  .online-indicator {
+    display: none !important;
+  }
+
+  .dashboard-layout {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .main-content-wrapper {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .main-content {
+    padding: 0 !important;
+    overflow: visible !important;
+    background-color: #ffffff !important;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .card-premium {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+    transform: none !important;
+  }
+
+  .text-primary {
+    color: #000000 !important;
+  }
+
+  .text-secondary {
+    color: #475569 !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 1.5cm;
+  }
 }

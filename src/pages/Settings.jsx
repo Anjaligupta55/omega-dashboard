@@ -93,7 +93,8 @@ export const Settings = () => {
             style={{ width: '80px', height: '80px', objectFit: 'cover', border: '2px solid var(--border-color)' }}
           />
           <div>
-            <h4 className="font-medium text-lg mb-3 text-primary">Anjali Gupta</h4>
+            <p className='text-sm text-secondary mb-1'>Owner</p>
+            <h4 className="text-lg mb-3 text-primary">Anjali Gupta</h4>
             
             <button 
               className="btn btn-outline btn-sm"

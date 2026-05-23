@@ -1,6 +1,7 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink,useNavigate } from 'react-router-dom';
 import { LayoutDashboard, Package, BarChart2, Settings } from 'lucide-react';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import './layout.css';
 
 const navItems = [
@@ -11,16 +12,19 @@ const navItems = [
 ];
 
 export const Sidebar = ({ isOpen, onClose }) => {
+  const navigate=useNavigate();
+  const [avatar] = useLocalStorage('user-avatar', 'https://api.dicebear.com/7.x/avataaars/svg?seed=Anjali&backgroundColor=b6e3f4');
   return (
     <>
+    
       {/* Mobile overlay */}
       {isOpen && <div className="sidebar-overlay" onClick={onClose}></div>}
       
       <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <div className="logo">
-            <div className="logo-icon"></div>
-            <span className="logo-text">Omega Dashboard</span>
+            <img src="/logo.png" alt="Logo" className="cursor-pointer logo-icon" onClick={() => navigate("/")} />
+            <span className="logo-text cursor-pointer" onClick={() => navigate("/")}>Alpha Dashboard</span>
           </div>
         </div>
 
@@ -44,13 +48,13 @@ export const Sidebar = ({ isOpen, onClose }) => {
         <div className="sidebar-footer">
           <div className="profile-section">
             <img 
-              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Anjali&backgroundColor=b6e3f4" 
+              src={avatar} 
               alt="Anjali Gupta" 
               className="avatar"
             />
-            <div className="profile-info">
-              <span className="profile-name">Anjali Gupta</span>
-              <span className="profile-role">Frontend Intern</span>
+            <div className="profile-info cursor-pointer" onClick={() => navigate("/settings")}>
+              <span className="profile-name">Anjali Gupta</span>  
+              
             </div>
             <Settings size={16} className="text-secondary cursor-pointer" />
           </div>

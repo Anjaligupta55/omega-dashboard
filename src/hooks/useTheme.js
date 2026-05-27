@@ -29,7 +29,6 @@ export function useTheme() {
   return { theme, toggleTheme, color, changeColor };
 }
 
-// Watch theme-config.json changes via Vite HMR
 if (import.meta.hot) {
   import.meta.hot.accept('../theme-config.json', (newModule) => {
     if (!newModule) return;
